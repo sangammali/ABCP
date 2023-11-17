@@ -15,7 +15,6 @@ jobs:
       - run:
           name: Build
           command: npm run build:dev
-      - aws-cli/setup
       - run:
           name: Deploy to S3
           command: |

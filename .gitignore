@@ -1,0 +1,17 @@
+# Ignore Node Modules
+node_modules/
+
+# Build and Output Directories
+dist/
+build/
+output/
+
+# Environment Variables
+.env
+.env.production
+
+# Dependency Lock Files
+package-lock.json
+
+# Auto-generated project files
+.vscode/

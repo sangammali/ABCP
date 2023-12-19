@@ -22,5 +22,5 @@ jobs:
       - deploy:
           name: Deploy to production
           command: |
-            ssh ubuntu@3.147.69.224 "cd /home/ubuntu/ABCP && git pull origin master"
-            ssh ubuntu@3.147.69.224 "pm2 reload"
+            ssh -i /root/.ssh/id_rsa ubuntu@3.147.69.224 "cd /home/ubuntu/ABCP && git pull origin master"
+            ssh -i /root/.ssh/id_rsa ubuntu@3.147.69.224 "pm2 reload"

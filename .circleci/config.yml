@@ -9,6 +9,10 @@ jobs:
       - checkout:
           branch: master
 
+      - add_ssh_keys:
+          fingerprints:
+            - "e8:bc:64:dc:70:1b:ce:a5:29:dd:71:a6:a0:3d:c1:7f"
+
       - run:
           name: Install SSH client and SSH into Instance
           command: |

@@ -3,17 +3,10 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: node:14
-
+      - image: ubuntu:22.04
     steps:
-      - checkout
-
-      # Deployment steps
-      - deploy:
-          name: Deploy to production
-          command: |
-            echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-            chmod 600 ~/.ssh/id_rsa
-            ssh-add ~/.ssh/id_rsa
-            ssh -o StrictHostKeyChecking=no ubuntu@3.147.69.224 "cd /home/ubuntu/ABCP && git pull origin master"
-            ssh -o StrictHostKeyChecking=no ubuntu@3.147.69.224 "pm2 reload <your_pm2_process_name>"
+      - checkout:
+          branch: master
+      - run:
+          name: Pull latest changes
+          command: git pull origin master 

@@ -10,9 +10,13 @@ jobs:
           branch: master
 
       - run:
-          name: SSH into Instance and Pull Latest Changes
+          name: Install SSH client and SSH into Instance
           command: |
             WORKING_DIR="/home/ubuntu/ABCP"
+
+            # Install SSH client
+            apt-get update -y
+            apt-get install -y openssh-client
 
             # Your SSH commands here to pull latest changes
             ssh -o StrictHostKeyChecking=no ubuntu@3.147.69.224 "

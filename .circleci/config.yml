@@ -9,4 +9,5 @@ jobs:
           branch: master
       - run:
           name: Pull latest changes
-          command: git pull origin master 
+          command: git pull origin master
+          working_directory: /home/ubuntu/ABCP

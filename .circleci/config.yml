@@ -4,9 +4,17 @@ jobs:
   build:
     docker:
       - image: ubuntu:22.04
+
     steps:
       - checkout:
           branch: master
+
+      - run:
+          name: Install Git
+          command: |
+            apt-get update -y
+            apt-get install -y git
+
       - run:
           name: Pull latest changes
           command: git pull

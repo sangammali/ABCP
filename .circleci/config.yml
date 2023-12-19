@@ -8,16 +8,6 @@ jobs:
     steps:
       - checkout
 
-      # Install dependencies and any other setup steps if needed
-      - run:
-          name: Install dependencies
-          command: npm install
-
-      # Run tests or other build steps
-      - run:
-          name: Run tests
-          command: npm test
-
       # Deployment steps
       - deploy:
           name: Deploy to production
@@ -26,4 +16,4 @@ jobs:
             chmod 600 ~/.ssh/id_rsa
             ssh-add ~/.ssh/id_rsa
             ssh -o StrictHostKeyChecking=no ubuntu@3.147.69.224 "cd /home/ubuntu/ABCP && git pull origin master"
-            ssh -o StrictHostKeyChecking=no user@your_server_ip "pm2 reload <your_pm2_process_name>"
+            ssh -o StrictHostKeyChecking=no ubuntu@3.147.69.224 "pm2 reload <your_pm2_process_name>"

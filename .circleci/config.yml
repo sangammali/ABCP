@@ -10,12 +10,9 @@ jobs:
           branch: master
 
       - run:
-          name: Install Git
+          name: Set Working Directory and Pull Latest Changes
           command: |
-            apt-get update -y
-            apt-get install -y git
-
-      - run:
-          name: Pull latest changes
-          command: git pull
-          working_directory: /home/ubuntu/ABCP
+            WORKING_DIR="/home/ubuntu/ABCP"
+            cd $WORKING_DIR
+            pwd  
+            git pull

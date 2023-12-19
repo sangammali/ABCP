@@ -1,35 +1,26 @@
 version: 2.1
-orbs:
-  aws-cli: circleci/aws-cli@1.3.1
 
 jobs:
   build:
     docker:
-      - image: circleci/node:16
-    working_directory: ~/repo
+      - image: node:18
+
     steps:
       - checkout
-      - run:
-          name: Install Dependencies
-          command: npm install
-      - run:
-          name: Build
-          command: npm run build:dev
-      - run:
-          name: Install AWS CLI
-          command: |
-            curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-            unzip awscliv2.zip
-            sudo ./aws/install
-      - run:
-          name: Deploy to S3
-          command: |
-            aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-            aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-            aws s3 sync dist/ s3://myhostingbucket1234 --delete
 
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - build
+      # Install dependencies and any other setup steps if needed
+      - run:
+          name: Install dependencies
+          command: npm install
+
+      # Run tests or other build steps
+      - run:
+          name: Run tests
+          command: npm test
+
+      # Deployment steps
+      - deploy:
+          name: Deploy to production
+          command: |
+            ssh ubuntu@3.147.69.224 "cd /home/ubuntu/ABCP && git pull origin master"
+            ssh ubuntu@3.147.69.224 "pm2 reload"

@@ -10,24 +10,13 @@ jobs:
           branch: master
 
       - run:
-          name: Set Working Directory
-          command: |
-            WORKING_DIR="/home/ubuntu/ABCP"
-            if [ -d "$WORKING_DIR" ]; then
-              cd $WORKING_DIR
-              pwd  # Print the current directory for debugging
-            else
-              echo "Error: Directory $WORKING_DIR does not exist."
-              exit 1
-            fi
-
-      - run:
           name: SSH into Instance and Pull Latest Changes
           command: |
+            WORKING_DIR="/home/ubuntu/ABCP"
+
             # Your SSH commands here to pull latest changes
-            if ssh -o StrictHostKeyChecking=no ubuntu@3.147.69.224 "echo 'SSHed into the instance.'"; then
+            ssh -o StrictHostKeyChecking=no ubuntu@3.147.69.224 "
+              mkdir -p $WORKING_DIR &&
+              cd $WORKING_DIR &&
               git pull
-            else
-              echo "Error: Unable to SSH into the instance."
-              exit 1
-            fi
+            "

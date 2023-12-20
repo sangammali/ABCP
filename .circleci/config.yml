@@ -8,7 +8,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh $SSH_USER@$SSH_HOST "mkdir -p /home/ubuntu/sangam"
+            ssh $SSH_USER@$SSH_HOST "sudo mkdir -p /home/ubuntu/sangam"
 
 workflows:
   build-and-deploy:

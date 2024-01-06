@@ -7,10 +7,10 @@ jobs:
     steps:
       - run: |
           ssh -oStrictHostKeyChecking=no -v $USER@$DNS "\
-            cd /home/ubuntu/sangam && \
-            git init && \
-            git remote add origin https://github.com/sangammali/ABCP.git && \
-            git pull origin master"
+            sudo cd /home/ubuntu/sangam && \
+            sudo git init && \
+            sudo git remote add origin https://github.com/sangammali/ABCP.git && \
+            sudo git pull origin master"
           # Replace <repository_url> with the actual URL of your Git repository
 
 workflows:

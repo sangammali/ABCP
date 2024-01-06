@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: arvindr226/alpine-ssh
     steps:
-      - run: ssh -i $SSH_PRIVATE_KEY -oStrictHostKeyChecking=no -v $USER@$DNS "sudo mkdir -p /home/ubuntu/sangam"
+      - run: ssh -oStrictHostKeyChecking=no -v $USER@$DNS "sudo mkdir -p /home/ubuntu/sangam"
 
 workflows:
   deploy-to-ec2:

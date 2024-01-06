@@ -5,9 +5,17 @@ jobs:
     docker:
       - image: arvindr226/alpine-ssh
     steps:
-      - run: ssh -oStrictHostKeyChecking=no -v $USER@$DNS "sudo mkdir -p /home/ubuntu/sangam && git pull origin master"
+      - run: |
+          ssh -oStrictHostKeyChecking=no -v $USER@$DNS "\
+            sudo mkdir -p /home/ubuntu/sangam && \
+            cd /home/ubuntu/sangam && \
+            git init && \
+            git remote add origin https://github.com/sangammali/ABCP.git && \
+            git pull origin master"
+          # Replace <repository_url> with the actual URL of your Git repository
 
 workflows:
   deploy-to-ec2:
     jobs:
       - deploy
+
